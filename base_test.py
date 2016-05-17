@@ -35,3 +35,7 @@ class BaseTestApi(unittest.TestCase):
         issue_id = location.split('/')[-1]
 
         return issue_id
+
+    def delete_issue(self, issue_id):
+        url = self.base_url + '/issue/' + issue_id
+        r = requests.delete(url, cookies=self.cookies)

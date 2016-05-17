@@ -28,7 +28,10 @@ class TestUpdateIssue(BaseTestApi):
         self.assertEquals(response_dict['issue']['field'][2]['value'], self.updateData['summary'])
         self.assertEquals(response_dict['issue']['field'][3]['value'], self.updateData['description'])
 
-    def test_update_unexistent_issue(self):
+        #remove created issue after all checks
+        self.delete_issue(issue_id)
+
+    def test_update_nonexisting_issue(self):
         url = self.base_url + 'ZZZ'
 
         r = requests.post(url, self.updateData, cookies=self.cookies)
